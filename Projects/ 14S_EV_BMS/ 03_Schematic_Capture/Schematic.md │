@@ -13,7 +13,7 @@ The design currently consists of the following major blocks:
 * CAN Transceiver
 * High Side Control
 * SWD Programming Interface
-* High Current Terminal Connections
+* High Current Terminal Connections.
 
 The modular architecture allows each subsystem to be independently verified before PCB implementation.
 
