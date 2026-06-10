@@ -1,0 +1,186 @@
+# Schematic Capture
+
+## Overview
+
+The schematic is organized into multiple functional blocks to simplify design review, debugging, PCB layout planning, and future maintenance.
+
+The design currently consists of the following major blocks:
+
+* Input Protection
+* Buck Convertors
+* AFE (BQ76940)
+* MCU (STM32)
+* CAN Transceiver
+* High Side Control
+* SWD Programming Interface
+* High Current Terminal Connections
+
+The modular architecture allows each subsystem to be independently verified before PCB implementation.
+
+---
+
+# INPUT PROTECTION
+
+The input protection block is the first stage connected to the battery pack.
+
+Objectives:
+
+* Protect downstream electronics
+* Suppress input transients
+* Reduce switching noise
+* Improve overall system robustness
+
+This block ensures that disturbances originating from the battery pack do not directly reach sensitive analog and digital circuitry.
+
+---
+
+# BUCK CONVERTORS
+
+The power architecture uses a multi-stage conversion approach.
+
+## 58V to 12V Converter
+
+Converts pack voltage into a regulated 12V rail.
+
+Primary uses:
+
+* Gate driver circuitry
+* High-side control circuitry
+
+---
+
+## 12V to 5V Converter
+
+Generates the intermediate 5V supply rail.
+
+Primary uses:
+
+* CAN communication circuitry
+* Auxiliary interfaces
+
+---
+
+## 5V to 3.3V Converter
+
+Generates the logic supply rail.
+
+Primary uses:
+
+* STM32 microcontroller
+* Digital control circuitry
+* BQ76940 interface circuitry
+
+---
+
+# AFE (BQ76940)
+
+The Analog Front End performs battery monitoring and protection-related measurements.
+
+Functions:
+
+* Cell voltage monitoring
+* Cell balancing support
+* Fault detection
+* Protection monitoring
+
+The BQ76940 communicates with the STM32 through the I²C interface.
+
+The integrated regulator output is also utilized for low-power system operation.
+
+---
+
+# MCU (STM32)
+
+The STM32 acts as the central controller of the Battery Management System.
+
+Responsibilities:
+
+* Reading battery measurements
+* Fault processing
+* Protection decisions
+* CAN communication handling
+* Power state management
+
+The MCU coordinates all major system operations.
+
+---
+
+# CAN TRANSCEIVER
+
+The CAN transceiver provides communication between the Battery Management System and external vehicle electronics.
+
+Applications:
+
+* Charger communication
+* Battery status reporting
+* Fault reporting
+* Diagnostic communication
+
+The CAN interface was selected due to its high reliability in electrically noisy automotive environments.
+
+---
+
+# HIGH SIDE CONTROL
+
+The high-side control block manages the charge and discharge MOSFETs.
+
+Functions:
+
+* Pack connection control
+* Short-circuit protection
+* Over-current protection
+* Charger isolation
+* Load isolation
+
+High-side switching was selected to improve safety and fault isolation capabilities.
+
+---
+
+# SWD PROGRAMMING INTERFACE
+
+A dedicated SWD programming header is included for firmware development and debugging.
+
+Functions:
+
+* Firmware programming
+* Debugging
+* Breakpoint analysis
+* Real-time system inspection
+
+The interface supports STM32 development using ST-LINK tools.
+
+---
+
+# HIGH CURRENT TERMINAL CONNECTIONS
+
+Dedicated terminal blocks are used for battery pack and charger connections.
+
+Reason for Selection:
+
+* Supports high current operation
+* Improved mechanical strength
+* Reliable field wiring
+* Simplified maintenance
+
+These connectors form the primary power path of the Battery Management System.
+
+---
+
+# Current Status
+
+Completed:
+
+* System architecture definition
+* Schematic capture
+* Electrical connectivity verification
+
+In Progress:
+
+* Footprint verification
+* PCB placement planning
+
+Next Phase:
+
+* PCB routing
+* Design rule verification
+* Hardware validation
