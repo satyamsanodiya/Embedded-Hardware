@@ -123,6 +123,22 @@ These libraries provide:
 Using these libraries reduces firmware development effort and improves maintainability.
 
 ---
+### Input Power Protection
+
+The board accepts an external 15V DC supply through a dedicated power terminal connector.
+
+A TVS (Transient Voltage Suppressor) diode is placed across the input power rail to protect the system against:
+
+- Electrostatic discharge (ESD)
+- Cable-induced transients
+- Hot-plugging voltage spikes
+- Power supply surge events
+
+Under normal operating conditions the TVS diode remains inactive.
+
+When the input voltage exceeds the device clamping threshold, the TVS rapidly conducts and redirects excess energy to ground, protecting downstream circuitry including the voltage regulators, ESP32-S3, and peripheral devices.
+
+This protection strategy improves overall system robustness and reliability in real-world operating environments.
 
 ## LCD Brightness Control Circuit
 
