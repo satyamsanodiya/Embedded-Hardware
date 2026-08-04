@@ -1,0 +1,340 @@
+# Component Orientation Guidelines
+
+Component orientation is an important Design for Manufacturing (DFM) practice that improves assembly quality, inspection efficiency, and future maintenance.
+
+Although component orientation usually does not affect electrical functionality, inconsistent orientation can increase assembly errors, inspection time, and troubleshooting complexity.
+
+Professional PCB designers try to maintain a consistent orientation for similar components wherever practical.
+
+---
+
+# Why Component Orientation Matters
+
+Proper component orientation provides several advantages:
+
+- Simplifies manual assembly
+- Improves automated Pick-and-Place efficiency
+- Makes Automated Optical Inspection (AOI) easier
+- Reduces assembly mistakes
+- Improves PCB readability
+- Simplifies debugging and field maintenance
+- Makes design reviews faster
+
+For production PCB designs, consistency is often more important than appearance.
+
+---
+
+# IC Orientation
+
+Integrated Circuits (ICs) should preferably follow a consistent orientation throughout the PCB.
+
+Example:
+
+✔ Good Practice
+
+```
+Pin-1
+
+▼
+
+┌──────────┐
+│ STM32    │
+└──────────┘
+
+▼
+
+┌──────────┐
+│ CAN IC   │
+└──────────┘
+
+▼
+
+┌──────────┐
+│ EEPROM   │
+└──────────┘
+```
+
+All Pin-1 indicators face the same direction.
+
+---
+
+❌ Poor Practice
+
+```
+STM32
+
+▼
+
+EEPROM
+
+▲
+
+CAN
+
+►
+```
+
+Random orientations make assembly, inspection, and debugging more difficult.
+
+---
+
+# Polarized Capacitors
+
+Electrolytic and tantalum capacitors have polarity.
+
+Positive terminals should follow a consistent orientation whenever PCB placement allows.
+
+Example:
+
+✔ Good
+
+```
++
+│
+
++
+│
+
++
+│
+```
+
+Benefits:
+
+- Easier inspection
+- Faster assembly
+- Reduced polarity mistakes
+
+---
+
+# Diode Orientation
+
+Diodes should also follow a common orientation.
+
+Example:
+
+```
+|>|
+
+|>|
+
+|>|
+```
+
+Instead of
+
+```
+|>|
+
+|<|
+
+|>|
+```
+
+Consistent cathode orientation helps technicians quickly identify polarity during debugging.
+
+---
+
+# LED Orientation
+
+LED polarity should remain consistent across the PCB.
+
+For indicator LEDs:
+
+```
+Power LED
+
+Status LED
+
+Error LED
+
+Activity LED
+```
+
+The anode or cathode should preferably face the same direction.
+
+---
+
+# Connector Orientation
+
+External connectors should be placed considering:
+
+- Cable routing
+- Mechanical access
+- User accessibility
+- Assembly process
+
+Poor connector orientation may:
+
+- Increase cable stress
+- Reduce accessibility
+- Complicate enclosure assembly
+
+Whenever possible, connectors should be aligned consistently along the PCB edge.
+
+---
+
+# Switch Orientation
+
+Push buttons and DIP switches should have a logical orientation.
+
+Example:
+
+```
+UP
+
+RESET
+
+BOOT
+
+USER
+```
+
+Keeping all switches aligned improves usability and maintenance.
+
+---
+
+# Passive Component Orientation
+
+Although resistors and ceramic capacitors are not polarized, maintaining a consistent orientation improves PCB readability.
+
+Example:
+
+```
+Horizontal
+
+====
+
+====
+
+====
+
+```
+
+instead of
+
+```
+====
+
+||
+
+====
+
+```
+
+This also simplifies visual inspection during assembly.
+
+---
+
+# Text and Silkscreen Orientation
+
+Reference designators should remain readable without constantly rotating the PCB.
+
+Good practice:
+
+- Horizontal text
+- Vertical text rotated consistently
+- Avoid upside-down labels whenever possible
+
+Example:
+
+```
+R1
+
+R2
+
+R3
+```
+
+instead of
+
+```
+R1
+
+1R
+
+R3
+```
+
+Readable silkscreen significantly improves debugging and servicing.
+
+---
+
+# Orientation for Automated Assembly
+
+Pick-and-Place machines can assemble components in different orientations, but consistent orientation offers advantages:
+
+- Faster verification
+- Easier programming
+- Lower inspection complexity
+- Reduced operator mistakes
+
+Although assembly machines compensate for rotation automatically, a clean and consistent layout improves manufacturing documentation and review.
+
+---
+
+# Orientation During PCB Review
+
+Before finalizing placement, verify:
+
+✔ Pin-1 indicators are easy to identify.
+
+✔ Similar ICs follow a consistent orientation.
+
+✔ Polarized capacitors are aligned consistently.
+
+✔ Diodes face the correct direction.
+
+✔ LED polarity is obvious.
+
+✔ Connectors are accessible.
+
+✔ Silkscreen is readable.
+
+✔ Component orientation supports easy inspection.
+
+---
+
+# Practical Example
+
+Example of a well-organized PCB:
+
+```
++------------------------------------------------+
+
+ USB
+
+ STM32
+
+ CAN
+
+ EEPROM
+
+ Crystal
+
+ Buck Converter
+
+ All IC Pin-1 markers point upward.
+
+ Electrolytic capacitors have positive terminals
+ facing the same direction.
+
+ Connectors are aligned along the PCB edge.
+
+ Silkscreen is readable from one viewing direction.
+
++------------------------------------------------+
+```
+
+Such consistency improves manufacturing quality, inspection speed, and long-term maintainability.
+
+---
+
+# Key Takeaways
+
+- Component orientation primarily improves manufacturability rather than electrical performance.
+- Consistent orientation reduces assembly and inspection errors.
+- Align IC Pin-1 indicators wherever practical.
+- Maintain consistent polarity for polarized components.
+- Keep connectors accessible and logically oriented.
+- Use readable silkscreen labels to simplify debugging and servicing.
